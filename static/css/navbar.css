@@ -1,0 +1,97 @@
+.pink {
+    width: 100%;
+    height: 76.8px;
+    background-color: #788a98;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
+}
+.white{width: 700px;
+        height: 700px;}
+/* The photo will start off the screen and slide in */
+.photo {
+    width: 551px;
+    height: 391px;
+    background-color: orange;
+    margin-top: 130px;
+    vertical-align: top;
+    margin-left: 25px;
+    position: absolute; /* Position the photo absolutely */
+    right: -100%; /* Start the photo off-screen to the right */
+    transition: right 1s ease-in-out; /* Smooth transition to slide in */
+}
+
+/* When the photo has finished sliding in, it will stay in place */
+.photo.slide-in {
+    right: 10px; /* Final position, 10px from the right */
+}
+
+.container {
+    display: flex;
+    width: 1400px;
+    align-items: flex-start;
+    background-color: #d9d9d9;
+}
+
+.black {
+    width: 800px;
+    height: 700px;
+    justify-content: center;
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.blue {
+    width: 700px;
+    height: 200px;
+    margin-top: 200px;
+    height: 180.2px;
+    width: 605.7px;
+    margin-left: 100px;
+}
+
+.logo {
+    padding-top: 10px;
+    height: 60px;
+}
+
+.text {
+    margin-top: 10px;
+    font-weight: bold;
+    width: 200px;
+    height: 60px;
+    font-size: 25px;
+    margin-left: 500px;
+}
+
+.buttons {
+    width: 800px;
+    height: 22.3px;
+    margin-left: 50px;
+}
+
+button {
+    width: 121.3px;
+    height: 30.3px;
+    font-size: 16px;
+    background-color: white;
+    border-style: none;
+    cursor: pointer;
+    margin-left: 5px;
+    font-weight: bold;
+    background-color: #788a98;
+}
+
+button:hover {
+    border-style: groove;
+    border-color: white;
+}
+
+button:active {
+    background-color: #2a3a48;
+    transform: scale(0.98);
+}

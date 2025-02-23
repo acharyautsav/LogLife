@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%; /* Ensure the body covers the entire height */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Disable both vertical and horizontal scrollbars */
+        }
+
+        .pink {
+            width: 100%;
+            height: 76.8px;
+            background-color: #788a98;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: 1000; 
+        }
+
+        .black {
+            width: 800px;
+            height: 700px;
+            justify-content: center;
+            display: inline-block;
+            margin-top: 50px;
+        }
+
+        .blue {
+            height: 500px;
+            width: 400px;
+            border: 2px solid ;
+            border-color: azure;
+            margin: auto;
+            border-radius: 10px;
+            margin-top: 70px;
+            margin-bottom: 15px;
+            background-color: aliceblue;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            width: 1400px;
+            align-items: flex-start;
+            background-color: #d9d9d9;
+        }
+
+        .photo {
+            width: 551px;
+            height: 391px;
+            background-color: orange;
+            margin-top: 130px;
+            vertical-align: top;
+            margin-left: 25px;
+        }
+
+        button {
+            width: 121.3px;
+            height: 30.3px;
+            font-size: 16px;
+            background-color: white;
+            border-style: none;
+            cursor: pointer;
+            margin-left: 5px;
+            font-weight: bold;
+            background-color: #788a98;
+        }
+
+        button:hover {
+            border-style: groove;
+            border-color: white;
+        }
+
+        button:active {
+            background-color: #2a3a48;
+            transform: scale(0.98);
+        }
+
+        .logo {
+            padding-top: 10px;
+            height: 60px;
+        }
+
+        .text {
+            margin-top: 10px;
+            font-weight: bold;
+            width: 200px;
+            height: 60px;
+            font-size: 25px;
+            margin-left: 500px;
+        }
+
+        .buttons {
+            width: 800px;
+            height: 22.3px;
+            margin-left: 50px;
+        }
+
+        .weekly_journal {
+            margin-left: 30px;
+            width: 135px;
+        }
+
+        .progress {
+            margin-left: 30px;
+        }
+
+        .blond_text {
+            font-size: 35px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .normal_text {
+            text-align: center;
+            font-size: 25px;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-50px) scale(0.95); /* Initial position and scale */
+            transition: opacity 1.5s ease-out, transform 1s ease-out; /* Smooth and slow transition */
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateX(0) scale(1); /* Move to the center and scale to original size */
+        }
+
+        .footer {
+            width: 1400px;
+            height: 50.8px;
+            background-color: #788a98;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; 
+        }
+
+        /* To-do list styles */
+        #todo-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .todo-item.completed {
+            text-decoration: line-through;
+            background-color: #e0e0e0;
+        }
+
+        .todo-item button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .todo-item button.tick {
+            color: green;
+        }
+
+        .todo-item button.cross {
+            color: red;
+        }
+
+        #task-input {
+            width: calc(100% - 40px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #add-task-btn {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #788a98;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        #add-task-btn:hover {
+            background-color: #2a3a48;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="pink">
+        <div class="logo">
+            <p class="text">Simple Self</p>
+        </div>
+
+        <div class="buttons">
+            <a href="{{ url_for('home') }}"><button class="Home">Home</button></a>
+            <a href="{{ url_for('daily_journal') }}"><button class="daily_journal">Daily Journal</button></a>
+            <a href="{{ url_for('to_do_list')}}"><button class="progress">To Do List</button></a>
+            <a href="{{ url_for('progress') }}"><button class="progress">Progress</button></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="black">
+            <div class="blue">
+                <h2>To-Do List</h2>
+                <input type="text" id="task-input" placeholder="Enter your task here">
+                <button id="add-task-btn">Add Task</button>
+                <ul id="todo-list"></ul>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="{{ url_for('static', filename='images/clock.jpg') }}" class="picc" alt="img irror">
+
+        </div>
+    </div>
+
+    <div class="footer"></div>
+
+    <script>
+        // Retrieve the saved to-do list from localStorage and render it
+        const todoList = document.getElementById('todo-list');
+        const taskInput = document.getElementById('task-input');
+        const addTaskBtn = document.getElementById('add-task-btn');
+
+        // Function to load tasks from localStorage
+        function loadTasks() {
+            const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            savedTasks.forEach(task => {
+                const todoItem = document.createElement('li');
+                todoItem.classList.add('todo-item');
+                if (task.completed) {
+                    todoItem.classList.add('completed');
+                }
+                todoItem.innerHTML = `
+                    <span>${task.text}</span>
+                    <div>
+                        <button class="tick">✔️</button>
+                        <button class="cross">❌</button>
+                    </div>
+                `;
+                todoList.appendChild(todoItem);
+            });
+        }
+
+        // Function to save tasks to localStorage
+        function saveTasks() {
+            const tasks = [];
+            document.querySelectorAll('.todo-item').forEach(todoItem => {
+                const task = {
+                    text: todoItem.querySelector('span').textContent,
+                    completed: todoItem.classList.contains('completed')
+                };
+                tasks.push(task);
+            });
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // Event listener to add new task
+        addTaskBtn.addEventListener('click', function () {
+            const taskText = taskInput.value.trim();
+            if (taskText !== "") {
+                const todoItem = document.createElement('li');
+                todoItem.classList.add('todo-item');
+                todoItem.innerHTML = `
+                    <span>${taskText}</span>
+                    <div>
+                        <button class="tick">✔️</button>
+                        <button class="cross">❌</button>
+                    </div>
+                `;
+                todoList.appendChild(todoItem);
+                taskInput.value = ''; // Clear input field
+                saveTasks(); // Save updated task list to localStorage
+            }
+        });
+
+        // Event delegation for tick and cross buttons
+        todoList.addEventListener('click', function (e) {
+            if (e.target.classList.contains('tick')) {
+                const todoItem = e.target.closest('.todo-item');
+                todoItem.classList.toggle('completed');
+                saveTasks(); // Save updated task list to localStorage
+            }
+
+            if (e.target.classList.contains('cross')) {
+                const todoItem = e.target.closest('.todo-item');
+                todoItem.remove();
+                saveTasks(); // Save updated task list to localStorage
+            }
+        });
+
+        // Load tasks when the page is loaded
+        loadTasks();
+    </script>
+
+</body>
+</html>

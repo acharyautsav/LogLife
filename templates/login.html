@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+<body>
+    <div>
+        <br><br>
+        <div id="container">
+            <input type="text" id="email" placeholder="Email" class="Email-wala-input"><br>
+            <input type="password" id="password" placeholder="Password"><br>
+            <input type="button" id="log" value="Log In" onclick="login()">
+            <a href="{{ url_for('registration') }}">
+                <button id="new">Create new account</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle login
+        function login() {
+            // Get email and password values from form
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Validate the input fields
+            if (!email || !password) {
+                alert("Please enter both email and password.");
+                return;
+            }
+
+            // Create the payload for the POST request
+            const payload = {
+                email: email,
+                password: password
+            };
+
+            // Send POST request to Flask server
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)  // Convert data to JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);  // Show success message
+                    window.location.href = '/landing_page';  // Redirect to another page (landing page)
+                } else {
+                    alert(data.message);  // Show error message
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error processing your login.');
+            });
+        }
+    </script>
+</body>
+</html>

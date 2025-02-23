@@ -1,0 +1,166 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
+
+
+  /* Hide the scrollbar itself */
+  ::-webkit-scrollbar {
+    
+    width: 0; /* Hides the scrollbar */
+  }
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #FF99CC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+.navbar .logo .text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .buttons button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    background-color: #F2F2F2;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.navbar .buttons button:hover {
+    background-color: #E0E0E0;
+}
+
+/* Day Section */
+.day {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin-top: 80px;
+    background-color: #788a98;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.date-container, .day-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-container p, .day-container p {
+    margin: 0;
+    color: white;
+    font-size: 14px;
+}
+
+/* Input Fields */
+input[type="date"], input[type="number"], textarea {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    margin-top: 5px;
+    width: 200px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input[type="date"]:focus, input[type="number"]:focus, textarea:focus {
+    border-color: #FF99CC;
+}
+
+input[type="date"]::placeholder, input[type="number"]::placeholder, textarea::placeholder {
+    color: #888;
+}
+
+/* Journal Section */
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.journal {
+    width: 40%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.journal-item {
+    margin-bottom: 20px;
+}
+
+.journal-item p {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    outline: none;
+    resize: none;
+}
+
+textarea:focus {
+    border-color: #FF99CC;
+}
+
+/* Photo Section */
+.photo-section {
+    
+        width: 551px;
+        height: 391px;
+        background-color: orange;
+        margin-top: 130px;
+        vertical-align: top;
+        margin-left: 25px;
+        
+    }
+
+.photo-section img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #788a98;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+}
+.picture_frame{
+    width: 1000px;
+    height: 1050px;
+    display: inline-block;
+
+
+}
+.pho{
+    width: 100%;
+    margin-top: 20%;
+    margin-left: 20%;
+   
+}

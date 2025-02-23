@@ -1,0 +1,104 @@
+#container{
+    height:420px;
+    width:350px;
+    border: 2px solid rgba(255, 0, 0, 0.109);
+    margin:auto;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    top: 60px;
+    
+}
+body{
+    background-image: url('../images/image.jpg');
+
+}
+#text{
+    height:50px;
+    width:300px;
+    margin: 20px;
+    margin-top: 0px;
+    border:2px solid rgba(123, 121, 121, 0.231);
+    border-radius: 5px;
+
+    font-size:medium;
+    font-weight: 540;
+    padding-left: 10px;
+}
+#password{
+    height:50px;
+    width:300px;
+    margin: 20px;
+    margin-top: 0px;
+    border:2px solid rgba(123, 121, 121, 0.231);
+    border-radius: 5px;
+
+    font-size:medium;
+    font-weight: 540;
+    padding-left: 10px;
+}
+#email{height:50px;
+    width:300px;
+    margin: 20px;
+    margin-top: 10px;
+    border:2px solid rgba(123, 121, 121, 0.231);
+    border-radius: 5px;
+
+    font-size:medium;
+    font-weight: 540;
+    padding-left: 10px; }
+
+h1{
+    text-align: center;
+    color: rgb(7, 97, 253);
+    
+    font-weight: bold;
+}
+
+#log{
+    background-color: rgb(7, 97, 253);
+    height:50px;
+    width:310px;
+    margin: 20px;
+    margin-top: 25px;
+    border:1px solid white;
+    border-radius: 8px;
+    padding: 3px;
+    color:white;
+    font-size: larger;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+}
+
+#new{
+    height:50px;
+    width:210px;
+    margin-left: 70px;
+    background-color: rgb(70, 186, 70);
+    color:aliceblue;
+    font-size: medium;
+    font-weight: bold;
+    border:1px solid white;
+    border-radius: 8px;
+    margin-top: 28px;
+    cursor: pointer;
+}
+
+hr{
+display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+button:hover{
+    opacity: 0.8;
+}
+#log:hover{
+    opacity: 0.8;
+}

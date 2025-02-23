@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>daily journal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+.day{
+    display: flex;
+    width: 1400px;
+    height: 50px;
+    margin-top: 80px;
+    background-color: #788a98;
+    padding-bottom: 2px;
+}
+
+
+.date_wala_div  {
+    display: flex;
+    flex-direction: row;
+    margin-top: 4px;
+    margin-left: 10px;
+    font-size: medium;
+    
+}
+.day_wala_div{
+    margin-right: 100px;
+    display: flex;
+    
+
+}
+.daykoinput {
+    height: 10px; /* Increase height to make the input field more visible */
+    margin-left: 5px;
+    margin-bottom: 0px; /* Adjust this as needed */
+}
+.class1{
+    width: 200px;
+    height: auto;
+}
+
+
+
+    </style>
+</head>
+<body>
+    
+
+<div class="pink">
+    <div class="logo">
+        <p class="text">Simple Self</p>
+    </div>
+    <div class="buttons">
+        <a href="{{ url_for('home') }}"><button class="Home">Home</button></a>
+        <a href="{{ url_for('daily_journal') }}"><button class="daily_journal">Daily Journal</button></a>
+        <a href="{{ url_for('to_do_list')}}"><button class="progress">To Do List</button></a>
+        <a href="{{ url_for('progress') }}"><button class="progress">Progress</button></a>
+    </div>
+
+    <!-- <div class="buttons">
+        <button class="Home">Home</button>
+        <button class="daily_journal">Daily Journal</button>
+        <button class="To-do Lists">To-do list</button>
+        <button class="progress">Progress</button>
+    </div> -->
+</div>
+
+<div class="day">
+    <div class="date_wala_div">
+        <p>date</p>
+        <input type="Date" class="daykoinput" id="date">
+        </div>
+        <div class="day_wala_div">
+        <p>Day</p>
+        <input type="number" class="daykoinput" id="day">
+        </div>      
+</div>
+
+
+<!-- Journal content -->
+<div class="container">
+    <div class="journal">
+        <div class="journal-item">
+            <p>Productivity</p>
+            <input type="number" id="productivity" placeholder="Rate productivity (1-10)">
+        </div>
+        <div class="journal-item">
+            <p>Mood</p>
+            <input type="number" id="mood" placeholder="Rate mood (1-10)">
+        </div>
+        <div class="journal-item">
+            <p>What went well today?</p>
+            <textarea id="went_well" placeholder="Describe your day..."></textarea>
+        </div>
+        <div class="journal-item">
+            <p>What went wrong today?</p>
+            <textarea id="went_wrong" placeholder="Describe your day..."></textarea>
+        </div>
+        <div class="journal-item">
+            <p>Thoughts</p>
+            <textarea id="thoughts" placeholder="Jot down your thoughts"></textarea>
+        </div>
+        <div class="journal-item">
+            <p>Things to learn</p>
+            <textarea id="todo_lists" placeholder="Write to do lists for tomorrow"></textarea>
+        </div>
+        <button id="submit-journal">Submit</button>
+    </div>
+    <div class="picture_frame">
+        <!-- Image section -->
+        <div class="pho">
+            <img src="{{ url_for('static', filename='images/clock.jpg') }}" alt="img irror">
+
+        </div>
+    </div>
+</div>
+
+        
+    </div>
+<div class="footer"></div>
+<script> 
+document.getElementById('submit-journal').addEventListener('click', function() {
+    // Collect all form data
+    let date = document.getElementById('date').value;  // Get value from the date input field
+    let day = document.getElementById('day').value;    // Get value from the day input field
+    let productivity = document.getElementById('productivity').value;
+    let mood = document.getElementById('mood').value;
+    let wentWell = document.getElementById('went_well').value;
+    let wentWrong = document.getElementById('went_wrong').value;
+    let thoughts = document.getElementById('thoughts').value;
+    let todoLists = document.getElementById('todo_lists').value;
+
+    // Prepare data to send
+    let data = {
+        date: date,
+        day: day,
+        productivity: productivity,
+        mood: mood,
+        went_well: wentWell,
+        went_wrong: wentWrong,
+        thoughts: thoughts,
+        todo_lists: todoLists
+    };
+
+    // Send the data via AJAX (POST request)
+    fetch('/submit_journal', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)  // Send data as JSON
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Journal entry submitted successfully!");
+        // Optionally, clear the form after submission
+        document.getElementById('productivity').value = '';
+        document.getElementById('mood').value = '';
+        document.getElementById('went_well').value = '';
+        document.getElementById('went_wrong').value = '';
+        document.getElementById('thoughts').value = '';
+        document.getElementById('todo_lists').value = '';
+        document.getElementById('date').value = '';
+        document.getElementById('day').value = '';
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert("Failed to submit journal entry.");
+    });
+});
+</script>
+
+</body>
+</html>

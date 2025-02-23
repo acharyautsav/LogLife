@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <style>
+        /* Slide-in animation for the photo */
+        .photo {
+            opacity: 0;
+            transform: translateX(50px); /* Start off slightly to the right */
+            transition: opacity 1.6s ease-out, transform 2s ease-out;
+            border-radius: 50px;
+        }
+
+        .photo.slide-in {
+            opacity: 1;
+            transform: translateX(0); /* End at the original position */
+        }
+        .picc{
+            border-radius: 50px;
+        }
+
+        /* Other CSS styles here... */
+    </style>
+</head>
+<body>
+    
+    <div class="pink">
+        <div class="logo">
+            <p class="text">Simple Self</p>
+        </div>
+        <div class="buttons">
+            <a href="{{ url_for('home') }}"><button class="Home">Home</button></a>
+            <a href="{{ url_for('daily_journal') }}"><button class="daily_journal">Daily Journal</button></a>
+            <a href="{{ url_for('to_do_list')}}"><button class="progress">To Do List</button></a>
+            <a href="{{ url_for('progress') }}"><button class="progress">Progress</button></a>
+        </div>
+        
+        <!-- <div class="buttons">
+            <button class="Home">Home</button>
+            <button class="daily_journal">Daily Journal</button>
+            <button class="weekly_journal">Weekly Journal</button>
+            <button class="progress">Progress</button>
+        </div> -->
+    </div>
+
+    <div class="container">
+        <div class="black">
+            <div class="blue">
+                <p class="blond_text">Planners & Journals</p> <!-- This text remains unchanged -->
+
+                <!-- This is where the description will change every 5 seconds -->
+                <p id="dynamic-text" class="normal_text">A collection of mindfully guided tools designed to elevate your well-being and support a balanced lifestyle.</p>
+            </div>
+        </div>
+        
+        <div class="photo">
+            <img src="{{ url_for('static', filename='images/clock.jpg') }}" class="picc" alt="img irror">
+
+        </div>
+    </div>
+    <div class="footer"></div>
+
+    <script>
+        // Arrays of texts for dynamic change
+        const descriptionTexts = [
+            "A collection of mindfully guided tools designed to elevate your well-being and support a balanced lifestyle.",
+            "Empower yourself with tools to enhance your mental clarity and foster personal growth.",
+            "Your well-being is at the heart of everything we do. Start your journey today!",
+            "Embrace balance with our thoughtfully curated planners and journals.",
+            "Craft your best life with the support of our wellness tools and resources."
+        ];
+
+        let currentDescriptionIndex = 0;
+        const descriptionElement = document.getElementById("dynamic-text");
+
+        // Function to change the description text with animation
+        function changeText() {
+            // Add fade-out class to the description text
+            descriptionElement.classList.remove('fade-in');
+
+            // After the fade-out animation ends, update the text and trigger the fade-in animation
+            setTimeout(() => {
+                // Update the description text
+                currentDescriptionIndex = (currentDescriptionIndex + 1) % descriptionTexts.length;
+                descriptionElement.textContent = descriptionTexts[currentDescriptionIndex];
+
+                // Add fade-in class for the description text
+                descriptionElement.classList.add('fade-in');
+            }, 1000); // 1000ms delay matches the fade-out duration
+        }
+
+        // Function to initiate the first text (faster pop-up in 0.5s)
+        function initFirstText() {
+            setTimeout(() => {
+                descriptionElement.classList.add('fade-in');
+            }, 500); // Initial fade-in in 0.5 seconds
+        }
+
+        // Set interval to change the description text every 5 seconds after the first
+        setTimeout(() => {
+            setInterval(changeText, 5000);
+        }, 500); // Start the interval after the first 0.5s fade-in
+
+        // Initialize first text with fast pop-up
+        initFirstText();
+
+        // JavaScript to make the photo slide in after the page loads
+        window.onload = () => {
+            setTimeout(() => {
+                document.querySelector(".photo").classList.add("slide-in");
+            }, 500); // 500ms delay before the photo starts sliding in
+        };
+    </script>
+</body>
+</html>

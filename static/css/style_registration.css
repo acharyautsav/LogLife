@@ -1,0 +1,98 @@
+#container{
+    height: 500px;
+    width: 400px;
+    border: 2px solid ;
+    border-color: azure;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: aliceblue;
+}
+
+body{
+    background-color: #788a98;
+}
+
+#fname, #lname, #email, #password, #confirm-password {
+    height: 50px;
+    width: 300px;
+    margin: 15px;
+    border: 2px solid rgba(123, 121, 121, 0.191);
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: 540px;
+    padding-left: 10px;
+}
+
+h1{
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#register{
+    height:50px;
+    width:210px;
+    margin-left: 70px;
+    background-color: rgb(7, 97, 253);
+    color:aliceblue;
+    font-size: medium;
+    font-weight: bold;
+    border:1px solid white;
+    border-radius: 8px;
+    margin-top: 2px;
+    cursor: pointer;
+}
+#register:hover{
+    opacity: 0.7;
+}
+#register::after{
+    opacity: 0.4;   
+}
+#login{
+    text-decoration: none;
+    margin: 10px;
+    margin-left: 105px;
+    margin-bottom: 95px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 106, 255);
+}
+
+#link{
+    margin: 15px;
+    
+    width: 500px;
+}
+
+hr{
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: 20px;
+    margin-inline-end: 20px;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+}
+
+
+button:hover{
+    opacity: 0.8;
+}
+body{
+    background-image:url("image.jpg");}
+.Back{
+    height:50px;
+    width:210px;
+    margin-left: 70px;
+    background-color: rgb(7, 97, 253);
+    color:aliceblue;
+    font-size: medium;
+    font-weight: bold;
+    border:1px solid white;
+    border-radius: 8px;
+    margin-top: 28px;
+    cursor: pointer;
+}
